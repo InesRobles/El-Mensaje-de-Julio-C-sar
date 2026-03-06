@@ -10,6 +10,10 @@ public class Principal {
 
 		System.out.print("Introduce la clave de desplazamiento (número entero): ");
 		int clave = scan.nextInt();
+		String cifrado = codificar(mensaje, clave);
+
+        // Salida de resultados
+        System.out.println("Mensaje Cifrado: " + cifrado);
 		scan.close();
 	}
 
