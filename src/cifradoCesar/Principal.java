@@ -12,4 +12,30 @@ public class Principal {
 		int clave = scan.nextInt();
 		scan.close();
 	}
+
+	public static String codificar(String texto, int clave) {
+		StringBuilder resultado = new StringBuilder();
+
+		for (int i = 0; i < texto.length(); i++) {
+			char caracter = texto.charAt(i);
+
+			if (Character.isLetter(caracter)) {
+				char base = Character.isLowerCase(caracter) ? 'a' : 'A';
+				// Aplicamos aritmética modular para el desplazamiento
+				// (caracter - base + clave) % 26 maneja el desplazamiento dentro del alfabeto
+				int nuevaPosicion = (caracter - base + clave) % 26;
+
+				// Manejo de claves negativas para descifrado
+				if (nuevaPosicion < 0) {
+					nuevaPosicion += 26;
+				}
+
+				resultado.append((char) (base + nuevaPosicion));
+			} else {
+				// Si no es una letra, se mantiene igual
+				resultado.append(caracter);
+			}
+		}
+		return resultado.toString();
+	}
 }
